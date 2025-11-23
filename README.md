@@ -129,11 +129,20 @@ python
         monitor = CANMonitor(args.model, args.threshold, args.input)
         monitor.run()
 
-**How to Run on Low-Compute Device
-**
-Simulation: cat test_plateau.csv | python can_monitor.py --model syncan_ensemble_model.pkl --threshold -5.93 --input stdin
-Real CAN Bus (Raspberry Pi): Install python-can: sudo apt install python3-can. Run python can_monitor.py --input can0 (assumes socketcan interface).
-Low Compute Tips: No GPU needed (CPU-only). Buffer deque uses <1MB RAM. Inference <1ms/msg on Pi 4.
+**How to Run on Low-Compute Device**
+
+Simulation: 
+cat test_plateau.csv | python can_monitor.py --model syncan_ensemble_model.pkl --threshold -5.93 --input stdin
+
+Real CAN Bus (Raspberry Pi): 
+Install python-can: 
+sudo apt install python3-can
+
+Run:
+python can_monitor.py --input can0 (assumes socketcan interface).
+
+Low Compute Tips: 
+No GPU needed (CPU-only). Buffer deque uses <1MB RAM. Inference <1ms/msg on Pi 4.
 
 **Expected Performance
 **
