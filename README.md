@@ -1,14 +1,15 @@
 # transfer-learning
 
-**Deploying the Ensemble Model for Real-Time CAN Traffic Monitoring on Low-Compute Devices
-**
+**Deploying the Ensemble Model for Real-Time CAN Traffic Monitoring on Low-Compute Devices**
+
 Based on the pre-trained ensemble model (syncan_ensemble_model.pkl) from your training script, I've adapted it for transfer learning/deployment as a real-time anomaly detection system for incoming CAN traffic. Since the model is unsupervised (trained on normals), "transfer" here means reusing the learned normal patterns for inference on new streams, without retraining. The program is optimized for low-compute devices (e.g., Raspberry Pi, Arduino with Python, or embedded Linux)—it uses lightweight streaming preprocess (buffer per ID for deltas/rolling stats), no heavy libraries beyond scikit-learn/joblib, and batch-free inference.Key Design Choices for Low ComputeEfficiency: Preprocess is incremental (update deltas/rolling on new message, no full sort). Buffer 10 messages per ID (small memory ~1KB/ID).
 Input: Reads CAN frames from stdin (simulate with cat log.csv) or real bus via python-can (e.g., socketcan on Raspberry Pi). Assumes CSV format (Label,Time,ID,Signal1-4), but ignores Label for real-time.
 Output: Prints anomaly score/proba per message; alerts if > threshold (use your PR-optimal -5.93 for ensemble, adjustable).
 Threshold: Fixed from PR curve (0.28 F1)—tune via --threshold arg.
 Requirements: pip install scikit-learn joblib pandas numpy (all lightweight, <100MB).
 
-Complete Monitoring Program (can_monitor.py)Save this as can_monitor.py and run with python can_monitor.py --model syncan_ensemble_model.pkl --threshold -5.93 --input stdin (or --input can0 for real bus).
+Complete Monitoring Program (can_monitor.py)
+Save this as can_monitor.py and run with python can_monitor.py --model syncan_ensemble_model.pkl --threshold -5.93 --input stdin (or --input can0 for real bus).
 
 python
 
