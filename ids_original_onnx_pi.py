@@ -1,7 +1,3 @@
-# ids_original_onnx_pi.py
-# FINAL VERSION – Runs your original proven model on Raspberry Pi
-# Two modes: CSV simulation OR live python-can vcan0
-
 import onnxruntime as ort
 import joblib
 import numpy as np
@@ -166,4 +162,5 @@ elif mode == "live":
         print(f"\nStopped. Total alerts: {alerts}/{total}")
 
 else:
+
     print("Invalid mode. Use 'sim' or 'live'")
