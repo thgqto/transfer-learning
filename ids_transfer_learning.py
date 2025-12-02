@@ -1,7 +1,3 @@
-# ids_inference_pi.py
-# Real-time SynCAN IDS for Raspberry Pi 3B+ (and any low-power device)
-# Tested with Python 3.9–3.11 on Raspberry Pi OS (32-bit or 64-bit)
-
 import pandas as pd
 import numpy as np
 import joblib
@@ -149,4 +145,5 @@ print("\n=== DONE ===")
 print(f"Total frames   : {frame_count}")
 print(f"Anomalies      : {anomaly_count} ({100*anomaly_count/frame_count:.3f}%)")
 print(f"Throughput     : {frame_count/total_time:.1f} fps")
+
 print(f"Total time     : {total_time:.2f} s")
